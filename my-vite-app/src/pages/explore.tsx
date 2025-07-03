@@ -1,30 +1,22 @@
-import { useState } from "react";
-import { 
-
-  HiOutlineMagnifyingGlass,
-
-
-} from "react-icons/hi2";
-import { 
-  HiOutlineArrowLeft, 
-  HiOutlineMapPin, 
-  HiOutlineStar, 
-  HiOutlineUsers, 
+import { useState, useEffect } from "react";
+import { HiOutlineMagnifyingGlass } from "react-icons/hi2";
+import {
+  HiOutlineMapPin,
+  HiOutlineStar,
+  HiOutlineUsers,
   HiOutlineHome,
   HiOutlineCurrencyRupee,
   HiOutlineShieldCheck,
   HiOutlineGlobeAlt,
   HiOutlineSparkles,
   HiOutlineEye,
-  HiOutlineHeart,
-  HiOutlinePhone
 } from "react-icons/hi2";
 
 import DefaultLayout from "@/layouts/default";
 import { title, subtitle } from "@/components/primitives";
 import { useLocationStore } from "@/store/useLocationStore";
+import MapModal from "@/components/Map/mapModal";
 
-// Enhanced dummy data with more variety
 const dummyLocations = [
   {
     _id: "1",
@@ -35,7 +27,8 @@ const dummyLocations = [
     culturalTags: ["Chikan", "Kathak", "Tehzeeb", "Awadhi Cuisine"],
     communityPreferences: ["Vegetarian", "Hindi-speaking", "Art Enthusiasts"],
     events: ["Tehzeeb Festival", "Chikan Festival", "Lucknow Mahotsav"],
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop",
     rating: 4.8,
     population: "3.2M",
     vibeScore: 92,
@@ -46,10 +39,16 @@ const dummyLocations = [
     state: "West Bengal",
     country: "India",
     bio: "The cultural capital where literature meets tradition, famous for Durga Puja celebrations and intellectual discourse.",
-    culturalTags: ["Durga Puja", "Rabindra Sangeet", "Literature", "Fish Cuisine"],
+    culturalTags: [
+      "Durga Puja",
+      "Rabindra Sangeet",
+      "Literature",
+      "Fish Cuisine",
+    ],
     communityPreferences: ["Bengali-speaking", "Art Lovers", "Intellectuals"],
     events: ["Kolkata Book Fair", "Durga Puja", "Poila Boishakh"],
-    image: "https://images.unsplash.com/photo-1558431382-27e303142255?w=600&h=400&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1558431382-27e303142255?w=600&h=400&fit=crop",
     rating: 4.6,
     population: "4.5M",
     vibeScore: 89,
@@ -60,10 +59,24 @@ const dummyLocations = [
     state: "Rajasthan",
     country: "India",
     bio: "The Pink City blends royal heritage with vibrant markets, showcasing magnificent palaces and traditional crafts.",
-    culturalTags: ["Royal Heritage", "Block Printing", "Folk Dance", "Rajasthani Cuisine"],
-    communityPreferences: ["Hindi-speaking", "Heritage Lovers", "Traditional Families"],
-    events: ["Jaipur Literature Festival", "Teej Festival", "Diwali Celebrations"],
-    image: "https://images.unsplash.com/photo-1599661046827-dacde7a0583a?w=600&h=400&fit=crop",
+    culturalTags: [
+      "Royal Heritage",
+      "Block Printing",
+      "Folk Dance",
+      "Rajasthani Cuisine",
+    ],
+    communityPreferences: [
+      "Hindi-speaking",
+      "Heritage Lovers",
+      "Traditional Families",
+    ],
+    events: [
+      "Jaipur Literature Festival",
+      "Teej Festival",
+      "Diwali Celebrations",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1599661046827-dacde7a0583a?w=600&h=400&fit=crop",
     rating: 4.7,
     population: "3.1M",
     vibeScore: 95,
@@ -74,10 +87,20 @@ const dummyLocations = [
     state: "Maharashtra",
     country: "India",
     bio: "The city of dreams where Bollywood magic meets street food culture, offering endless opportunities and diversity.",
-    culturalTags: ["Bollywood", "Street Food", "Financial Hub", "Multicultural"],
-    communityPreferences: ["Cosmopolitan", "Entrepreneurs", "Young Professionals"],
+    culturalTags: [
+      "Bollywood",
+      "Street Food",
+      "Financial Hub",
+      "Multicultural",
+    ],
+    communityPreferences: [
+      "Cosmopolitan",
+      "Entrepreneurs",
+      "Young Professionals",
+    ],
     events: ["Mumbai Film Festival", "Ganesh Chaturthi", "Kala Ghoda Festival"],
-    image: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=600&h=400&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=600&h=400&fit=crop",
     rating: 4.4,
     population: "12.4M",
     vibeScore: 88,
@@ -85,33 +108,47 @@ const dummyLocations = [
 ];
 
 export default function ExplorePage() {
-  const { locations } = useLocationStore();
+  const { locations, getLocation } = useLocationStore();
   const [search, setSearch] = useState("");
-  
 
-const filteredLocations = locations.filter((location) =>
-  location.name?.toLowerCase().includes(search.toLowerCase()) ||
-  location.city?.toLowerCase().includes(search.toLowerCase()) ||
-  location.area?.toLowerCase().includes(search.toLowerCase()) ||
-  location.location?.toLowerCase().includes(search.toLowerCase()) ||
-  location.description?.toLowerCase().includes(search.toLowerCase()) ||
-  location.languages?.some(lang =>
-    lang.toLowerCase().includes(search.toLowerCase())
-  ) ||
-  location.amenities?.some(amenity =>
-    amenity.toLowerCase().includes(search.toLowerCase())
-  ) ||
-  location.vibes?.some(vibe =>
-    vibe.toLowerCase().includes(search.toLowerCase())
-  ) ||
-  location.highlights?.some(highlight =>
-    highlight.toLowerCase().includes(search.toLowerCase())
-  )
-);
+  const [selectedLocation, setSelectedLocation] = useState<{
+    lat: number;
+    lng: number;
+    name: string;
+  } | null>(null);
 
+  useEffect(() => {
+    getLocation();
+  }, [getLocation]);
 
+  const allLocations = locations && locations.length > 0 ? locations : dummyLocations;
 
- 
+  const filteredLocations = allLocations.filter(
+    (location: any) =>
+      (location.name || location.city)?.toLowerCase().includes(search.toLowerCase()) ||
+      location.city?.toLowerCase().includes(search.toLowerCase()) ||
+      location.area?.toLowerCase().includes(search.toLowerCase()) ||
+      location.location?.toLowerCase().includes(search.toLowerCase()) ||
+      (location.description || location.bio)?.toLowerCase().includes(search.toLowerCase()) ||
+      location.languages?.some((lang: string) =>
+        lang.toLowerCase().includes(search.toLowerCase())
+      ) ||
+      location.amenities?.some((amenity: string) =>
+        amenity.toLowerCase().includes(search.toLowerCase())
+      ) ||
+      location.vibes?.some((vibe: string) =>
+        vibe.toLowerCase().includes(search.toLowerCase())
+      ) ||
+      location.highlights?.some((highlight: string) =>
+        highlight.toLowerCase().includes(search.toLowerCase())
+      ) ||
+      location.culturalTags?.some((tag: string) =>
+        tag.toLowerCase().includes(search.toLowerCase())
+      ) ||
+      location.communityPreferences?.some((pref: string) =>
+        pref.toLowerCase().includes(search.toLowerCase())
+      )
+  );
 
   return (
     <DefaultLayout>
@@ -119,14 +156,21 @@ const filteredLocations = locations.filter((location) =>
         {/* Hero Section */}
         <div className="relative bg-gradient-to-br from-deepBlack-500 via-deepBlack-600 to-deepBlack-800 py-16 px-4">
           <div className="max-w-7xl mx-auto text-center">
-            <h1 className={title({ size: "lg", color: "primary", class: "mb-4" })}>
+            <h1
+              className={title({ size: "lg", color: "primary", class: "mb-4" })}
+            >
               Explore Your Perfect
             </h1>
             <h1 className={title({ size: "lg", class: "text-softWhite mb-6" })}>
               Cultural Community
             </h1>
-            <p className={subtitle({ class: "max-w-2xl mx-auto text-mutedGray-300 mb-8" })}>
-              Discover neighborhoods that resonate with your cultural identity, lifestyle preferences, and community values.
+            <p
+              className={subtitle({
+                class: "max-w-2xl mx-auto text-mutedGray-300 mb-8",
+              })}
+            >
+              Discover neighborhoods that resonate with your cultural identity,
+              lifestyle preferences, and community values.
             </p>
 
             {/* Enhanced Search */}
@@ -156,13 +200,15 @@ const filteredLocations = locations.filter((location) =>
                 {search ? `Results for "${search}"` : "Discover Communities"}
               </h2>
               <p className="text-mutedGray-400">
-                {filteredLocations.length} {filteredLocations.length === 1 ? 'community' : 'communities'} found
+                {filteredLocations.length}{" "}
+                {filteredLocations.length === 1 ? "community" : "communities"}{" "}
+                found
               </p>
             </div>
           </div>
 
-  <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {filteredLocations.map((community: any, index: number) => (
+          <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {filteredLocations?.map((community: any, index: number) => (
               <div
                 key={community.id}
                 className="bg-deepBlack-800/60 border border-primary-500/20 backdrop-blur-lg hover:border-primary-500/50 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-primary-500/10 rounded-xl overflow-hidden h-fit"
@@ -172,9 +218,6 @@ const filteredLocations = locations.filter((location) =>
                   <div className="w-full h-40 bg-gradient-to-br from-primary-500/20 to-magenta-500/20 flex items-center justify-center">
                     <HiOutlineHome size={48} className="text-primary-400" />
                   </div>
-                  
-                  
-
 
                   {/* Rank Badge */}
                   <div className="absolute bottom-3 left-3">
@@ -192,54 +235,63 @@ const filteredLocations = locations.filter((location) =>
                       {community.name}
                     </h3>
                     <div className="flex items-center text-mutedGray-400 text-xs mb-2">
-                      <span className="mr-1"><HiOutlineMapPin size={12} /></span>
-                      {community.location} ,{community.area}{community.city}
+                      <span className="mr-1">
+                        <HiOutlineMapPin size={12} />
+                      </span>
+                      {community.location || `${community.area || ''} ${community.city || ''}`}
                     </div>
                     <div className="flex items-center gap-3 text-xs text-mutedGray-400">
                       <span className="flex items-center gap-1">
                         <HiOutlineStar size={12} className="text-amber-400" />
-                        {community.rating}
+                        {community.rating || 4.0}
                       </span>
                       <span className="flex items-center gap-1">
                         <HiOutlineUsers size={12} />
-                        {community.residents}
+                        {community.residents || community.population || 'N/A'}
                       </span>
                       <span className="flex items-center gap-1">
-                        <HiOutlineShieldCheck size={12} className="text-emerald-400" />
-                        {community.safetyScore}/10
+                        <HiOutlineShieldCheck
+                          size={12}
+                          className="text-emerald-400"
+                        />
+                        {community.safetyScore || '8'}/10
                       </span>
                     </div>
                   </div>
 
                   {/* Description */}
                   <p className="text-mutedGray-300 text-xs mb-3 leading-relaxed line-clamp-2">
-                    {community.description}
+                    {community.description || community.bio || 'A wonderful community to explore.'}
                   </p>
 
                   {/* Price Range */}
                   <div className="mb-3">
                     <p className="text-emerald-400 text-xs font-semibold mb-1.5 flex items-center">
-                      <HiOutlineCurrencyRupee size={12} className="mr-1" /> Price Range
+                      <HiOutlineCurrencyRupee size={12} className="mr-1" />{" "}
+                      Price Range
                     </p>
                     <span className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-1.5 py-0.5 rounded text-xs">
-                      {community.priceRange}
+                      {community.priceRange || '₹20K - ₹40K'}
                     </span>
                   </div>
 
                   {/* Highlights */}
                   <div className="mb-3">
                     <p className="text-primary-400 text-xs font-semibold mb-1.5 flex items-center">
-                      <HiOutlineSparkles size={12} className="mr-1" /> Highlights
+                      <HiOutlineSparkles size={12} className="mr-1" />{" "}
+                      Highlights
                     </p>
                     <div className="flex flex-wrap gap-1">
-                      {community.highlights?.slice(0, 2).map((highlight: string, idx: number) => (
-                        <span
-                          key={idx}
-                          className="bg-primary-500/10 text-primary-400 border border-primary-500/20 px-1.5 py-0.5 rounded text-xs"
-                        >
-                          {highlight}
-                        </span>
-                      ))}
+                      {community.highlights
+                        ?.slice(0, 2)
+                        .map((highlight: string, idx: number) => (
+                          <span
+                            key={idx}
+                            className="bg-primary-500/10 text-primary-400 border border-primary-500/20 px-1.5 py-0.5 rounded text-xs"
+                          >
+                            {highlight}
+                          </span>
+                        ))}
                       {(community.highlights?.length || 0) > 2 && (
                         <span className="bg-mutedGray-400/10 text-mutedGray-400 px-1.5 py-0.5 rounded text-xs">
                           +{(community.highlights?.length || 0) - 2}
@@ -254,24 +306,34 @@ const filteredLocations = locations.filter((location) =>
                       <HiOutlineGlobeAlt size={12} className="mr-1" /> Vibes
                     </p>
                     <div className="flex flex-wrap gap-1">
-                      {community.vibes?.slice(0, 2).map((vibe: string, idx: number) => (
-                        <span
-                          key={idx}
-                          className="bg-violet-500/10 text-violet-400 border border-violet-500/20 px-1.5 py-0.5 rounded text-xs"
-                        >
-                          {vibe}
-                        </span>
-                      ))}
+                      {community.vibes
+                        ?.slice(0, 2)
+                        .map((vibe: string, idx: number) => (
+                          <span
+                            key={idx}
+                            className="bg-violet-500/10 text-violet-400 border border-violet-500/20 px-1.5 py-0.5 rounded text-xs"
+                          >
+                            {vibe}
+                          </span>
+                        ))}
                     </div>
                   </div>
 
                   {/* Action Buttons */}
                   <div className="flex gap-2 mt-4">
-                    <button className="flex-1 bg-gradient-to-r from-primary-500 to-magenta-500 text-softWhite font-medium py-2 px-3 rounded-lg transition-all hover:shadow-lg hover:shadow-primary-500/20 flex items-center justify-center gap-1.5 text-xs">
+                    <button
+                      className="flex-1 bg-gradient-to-r from-primary-500 to-magenta-500 text-softWhite font-medium py-2 px-3 rounded-lg transition-all hover:shadow-lg hover:shadow-primary-500/20 flex items-center justify-center gap-1.5 text-xs"
+                      onClick={() =>
+                        setSelectedLocation({
+                          lat: community.lat,
+                          lng: community.lng,
+                          name: community.name,
+                        })
+                      }
+                    >
                       <HiOutlineEye size={14} />
                       Explore
                     </button>
-                    
                   </div>
                 </div>
               </div>
@@ -286,7 +348,8 @@ const filteredLocations = locations.filter((location) =>
                 No communities found
               </h3>
               <p className="text-mutedGray-400 mb-6">
-                Try adjusting your search terms or explore our featured communities.
+                Try adjusting your search terms or explore our featured
+                communities.
               </p>
               <button
                 className="bg-primary-500 text-softWhite px-6 py-3 rounded-lg font-semibold hover:bg-primary-600 transition-all"
@@ -298,6 +361,15 @@ const filteredLocations = locations.filter((location) =>
           )}
         </div>
       </div>
+      {selectedLocation && (
+        <MapModal
+          isOpen={true}
+          onClose={() => setSelectedLocation(null)}
+          lat={selectedLocation.lat}
+          lng={selectedLocation.lng}
+          name={selectedLocation.name}
+        />
+      )}
     </DefaultLayout>
   );
 }

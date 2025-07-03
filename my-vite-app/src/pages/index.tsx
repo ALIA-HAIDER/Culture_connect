@@ -1,6 +1,5 @@
 
 import DefaultLayout from "@/layouts/default";
-  // import headerHp from "@/components/HomePage/headerHp";
 import HeaderHp from "@/components/HomePage/headerHp";
 import HowItWorks from "@/components/HomePage/HowItWorks";
 import FeaturesGrid from "@/components/HomePage/FeaturesGrid";

@@ -8,6 +8,8 @@ interface LocationState {
   name: string;
   city: string;
   area?: string;
+  lat: number;
+  lng: number;
   location?: string;
   rating?: number;        // out of 5
   reviews?: number;       // total count
@@ -42,6 +44,7 @@ interface LocationStore {
   filterLocation: LocationState[];
   getLocation: () => Promise<void>;
   filterLocations: (preferences: PreferencesData) => Promise<void>;
+  restoreFilteredLocations: () => void;
 }
 
 export const useLocationStore = create<LocationStore>((set) => ({
@@ -51,9 +54,7 @@ export const useLocationStore = create<LocationStore>((set) => ({
   getLocation: async () => {
     try {
       const response = await axiosInstance.get('/locations');
-    //   console.log(response);
       set({ locations: response.data });
-      console.log({ locations: response.data });
     } catch (error) {
       if (error instanceof AxiosError) {
         toast.error(error.response?.data.message || 'Failed to fetch locations');
@@ -66,15 +67,27 @@ export const useLocationStore = create<LocationStore>((set) => ({
   filterLocations: async (preferences) => {
     try {
       const response = await axiosInstance.post('/locations/filter', preferences);
-      console.log(response);
       set({ filterLocation: response.data });
-      console.log({ filterLocation: response.data });
+      sessionStorage.setItem('filteredLocations', JSON.stringify(response.data));
     } catch (error) {
+      console.error('Store: Error filtering locations:', error);
       if (error instanceof AxiosError) {
         toast.error(error.response?.data.message || 'Failed to filter locations');
       } else {
         toast.error('An unexpected error occurred');
       }
+    }
+  },
+
+  restoreFilteredLocations: () => {
+    try {
+      const stored = sessionStorage.getItem('filteredLocations');
+      if (stored) {
+        const parsedData = JSON.parse(stored);
+        set({ filterLocation: parsedData });
+      }
+    } catch (error) {
+      console.error('Error restoring filtered locations:', error);
     }
   },
 }));

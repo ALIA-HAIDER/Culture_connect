@@ -88,7 +88,7 @@ export const Navbar = () => {
             })}
             // href={siteConfig.links.docs}
           >
-            Login/Signup
+            {/* Login/Signup */}
           </Link>
         </NavbarItem>
       </NavbarContent>

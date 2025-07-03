@@ -14,7 +14,6 @@ import {
   HiOutlineSparkles,
   HiOutlineHeart,
 } from "react-icons/hi2";
-import { Link } from "@heroui/link";
 import { useLocationStore } from "@/store/useLocationStore";
 
 export interface PreferencesData {
@@ -60,15 +59,9 @@ export default function PreferencesPage() {
   const handleSavePreferences = async () => {
     setIsLoading(true);
     try {
-      // Filter locations based on preferences
       await filterLocations(preferences);
-      console.log("Saving preferences:", preferences);
-
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      // Navigate to match results page
-      window.location.href = "/matchResults";
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      window.location.href = "/matchResult";
     } catch (error) {
       console.error("Error saving preferences:", error);
       alert("Error saving preferences. Please try again.");

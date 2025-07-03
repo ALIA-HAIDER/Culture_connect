@@ -17,20 +17,7 @@ const filterLocations = async (req, res) => {
     } = req.body;
 
     let query = { isActive: true };
-    let scoreBoosts = {};
-
-    // Safety level filter (mandatory)
-    if (safetyLevel > 1) {
-      query.safetyScore = { $gte: safetyLevel };
-    }
-
-    // Affordability range filter (mandatory)
-    if (affordabilityRange && affordabilityRange.length === 2) {
-      query.$and = [
-        { affordabilityMin: { $lte: affordabilityRange[1] } },
-        { affordabilityMax: { $gte: affordabilityRange[0] } }
-      ];
-    }
+    
 
     // Build scoring pipeline for matching preferences
     const pipeline = [
