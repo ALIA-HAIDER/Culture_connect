@@ -1,7 +1,7 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Culture Connect",
+  name: "Neighborly",
   description: "Find your perfect community based on culture, lifestyle, and preferences.",
   navItems: [
     {

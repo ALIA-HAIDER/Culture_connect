@@ -1,4 +1,4 @@
-# 🌍 Culture Connect
+# �️ Neighborly
 
 <div align="center">
   <img src="https://img.shields.io/badge/React-18.3.1-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React" />
@@ -10,7 +10,7 @@
 </div>
 
 <div align="center">
-  <h3>🏡 Find Your Perfect Cultural Community</h3>
+  <h3>🏡 Find Your Perfect Community</h3>
   <p><em>Connecting people with neighborhoods that resonate with their cultural identity, lifestyle preferences, and community values.</em></p>
 </div>
 
@@ -18,11 +18,11 @@
 
 ## ✨ Overview
 
-**Culture Connect** is a sophisticated web application that revolutionizes how people discover and choose their ideal living communities. By leveraging advanced preference matching algorithms and comprehensive cultural data, the platform connects users with neighborhoods that truly align with their cultural background, lifestyle choices, and community expectations.
+**Neighborly** is a sophisticated web application that revolutionizes how people discover and choose their ideal living communities. By leveraging advanced preference matching algorithms and comprehensive cultural data, the platform connects users with neighborhoods that truly align with their cultural background, lifestyle choices, and community expectations.
 
 ### 🎯 Problem We Solve
 
-Finding a community where you feel culturally at home is challenging. Traditional property search platforms focus on amenities and price, but overlook the crucial cultural fit that makes a place feel like *home*. Culture Connect bridges this gap by prioritizing cultural compatibility, community vibes, and lifestyle alignment.
+Finding a community where you feel culturally at home is challenging. Traditional property search platforms focus on amenities and price, but overlook the crucial cultural fit that makes a place feel like *home*. Neighborly bridges this gap by prioritizing cultural compatibility, community vibes, and lifestyle alignment.
 
 ---
 
@@ -91,7 +91,7 @@ Finding a community where you feel culturally at home is challenging. Traditiona
 ## 📂 Project Structure
 
 ```
-Culture_connect/
+Neighborly/
 ├── 📱 my-vite-app/                 # Frontend Application
 │   ├── 🎨 src/
 │   │   ├── 📄 pages/               # Route components
@@ -133,8 +133,8 @@ Culture_connect/
 ### **1. Clone & Setup**
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/culture-connect.git
-cd culture-connect
+git clone https://github.com/your-username/neighborly.git
+cd neighborly
 
 # Install frontend dependencies
 cd my-vite-app
@@ -365,10 +365,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support & Contact
 
-- 🐛 **Bug Reports**: [Create an Issue](https://github.com/your-username/culture-connect/issues)
-- 💡 **Feature Requests**: [Discussion Board](https://github.com/your-username/culture-connect/discussions)
-- 📧 **Email**: support@cultureconnect.app
-- 🐦 **Twitter**: [@CultureConnect](https://twitter.com/cultureconnect)
+- 🐛 **Bug Reports**: [Create an Issue](https://github.com/your-username/neighborly/issues)
+- 💡 **Feature Requests**: [Discussion Board](https://github.com/your-username/neighborly/discussions)
+- 📧 **Email**: support@neighborly.app
+- 🐦 **Twitter**: [@Neighborly](https://twitter.com/neighborly)
 
 ---
 
