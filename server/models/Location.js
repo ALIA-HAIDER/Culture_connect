@@ -1,108 +1,173 @@
 const mongoose = require('mongoose');
 
 const locationSchema = new mongoose.Schema({
-  city: { 
-    type: String, 
+  name: {
+    type: String,
     required: true,
-    trim: true
+    index: true
   },
-  state: { 
+  city: {
     type: String,
-    trim: true
+    required: true,
+    index: true
   },
-  country: { 
-    type: String, 
-    default: 'India',
-    trim: true
-  },
-
-  coordinates: {
-    lat: {
-      type: Number,
-      min: -90,
-      max: 90
-    },
-    lng: {
-      type: Number,
-      min: -180,
-      max: 180
-    }
-  },
-
-  bio: {
+  area: {
     type: String,
-    default: 'This city has a unique cultural identity.',
-    maxLength: 500
+    index: true
+  },
+  location: {
+    type: String,
+    index: true
   },
   
-  // Image URL for the location
   image: {
     type: String,
-    default: 'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=600&h=400&fit=crop'
+    required: true,
+    default: "/api/placeholder/400/250"
   },
-
-  // Cultural tags and highlights
-  culturalTags: [String], // e.g., ["Durga Puja", "Kathak", "Chikan Embroidery"]
+  imageAlt: {
+    type: String,
+    default: function() { return `${this.name} community image`; }
+  },
+  imageCredits: {
+    type: String
+  },
   
-  // Community preferences and demographics
-  communityPreferences: [String], // e.g., ["Vegetarian", "Hindi-speaking", "Festival oriented"]
-
-  // Upcoming events and festivals
-  events: [String],
-
-  // Additional fields for enhanced functionality
+  images: [{
+    url: {
+      type: String,
+      required: true
+    },
+    alt: {
+      type: String
+    },
+    caption: {
+      type: String
+    },
+    isPrimary: {
+      type: Boolean,
+      default: false
+    }
+  }],
+  
   rating: {
     type: Number,
-    min: 0,
+    min: 1,
     max: 5,
     default: 4.0
   },
-
-  population: {
-    type: String,
-    default: 'N/A'
+  reviews: {
+    type: Number,
+    default: 0
   },
-
-  vibeScore: {
+  matchScore: {
+    type: Number,
+    min: 1,
+    max: 10
+  },
+  matchPercentage: {
     type: Number,
     min: 0,
-    max: 100,
-    default: 85
+    max: 100
   },
-
-  // SEO and search optimization
-  searchKeywords: [String], // Additional keywords for search functionality
-
-  // Status and visibility
+  safetyScore: {
+    type: Number,
+    min: 1,
+    max: 10,
+    index: true
+  },
+  
+  description: {
+    type: String,
+    required: true
+  },
+  residents: {
+    type: Number,
+    index: true
+  },
+  priceRange: {
+    type: String,
+    index: true
+  },
+  
+  highlights: [{
+    type: String
+  }],
+  vibes: [{
+    type: String
+  }],
+  languages: [{
+    type: String
+  }],
+  amenities: [{
+    type: String
+  }],
+  
+  culturalTags: [{
+    type: String
+  }],
+  religionTags: [{
+    type: String
+  }],
+  foodPreferences: [{
+    type: String
+  }],
+  lifestyleOptions: [{
+    type: String
+  }],
+  areaVibes: [{
+    type: String
+  }],
+  communityTypes: [{
+    type: String
+  }],
+  commuteOptions: [{
+    type: String
+  }],
+  connectivityFeatures: [{
+    type: String
+  }],
+  
+  affordabilityMin: {
+    type: Number,
+    index: true
+  },
+  affordabilityMax: {
+    type: Number,
+    index: true
+  },
+  
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now
+  },
   isActive: {
     type: Boolean,
-    default: true
-  },
-
-  featured: {
-    type: Boolean,
-    default: false
+    default: true,
+    index: true
   }
-}, { 
-  timestamps: true,
-  // Add indexes for better query performance
-  toJSON: { virtuals: true },
-  toObject: { virtuals: true }
 });
 
-// Create indexes for better search performance
-locationSchema.index({ city: 'text', state: 'text', culturalTags: 'text', communityPreferences: 'text' });
-locationSchema.index({ coordinates: '2dsphere' }); // For geospatial queries
-locationSchema.index({ isActive: 1, featured: -1 }); // For filtering active and featured locations
+// Single field indexes (safe for arrays)
+locationSchema.index({ city: 1, safetyScore: -1 });
+locationSchema.index({ affordabilityMin: 1, affordabilityMax: 1 });
+locationSchema.index({ areaVibes: 1 });
+locationSchema.index({ culturalTags: 1 });
+locationSchema.index({ languages: 1 });
+locationSchema.index({ communityTypes: 1 });
+locationSchema.index({ rating: -1 });
+locationSchema.index({ matchScore: -1 });
 
-// Virtual for full location name
-locationSchema.virtual('fullLocation').get(function() {
-  return `${this.city}, ${this.state}, ${this.country}`;
-});
-
-// Virtual for search display
-locationSchema.virtual('displayName').get(function() {
-  return `${this.city}, ${this.state}`;
+// Text search index
+locationSchema.index({
+  name: "text",
+  description: "text",
+  highlights: "text",
+  vibes: "text"
 });
 
 module.exports = mongoose.model('Location', locationSchema);

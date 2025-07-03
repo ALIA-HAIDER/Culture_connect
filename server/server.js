@@ -6,14 +6,18 @@ require("dotenv").config();
 const app = express();
 connectDb();
 
-app.use(cross());
+app.use(
+  cross({
+    origin: ["http://localhost:5174"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 //routes
 
 app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/locations", require("./routes/locationRoutes"));
-
 
 app.get("/", (req, res) => {
   res.send("API is running");

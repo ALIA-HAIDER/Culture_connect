@@ -14,15 +14,17 @@ export default function DefaultLayout({
         {children}
       </main>
       <footer className="w-full flex items-center justify-center py-3 bg-deepBlack-800/50 border-t border-primary-500/20">
+      Built with 💜 by 
         <Link
           isExternal
           className="flex items-center gap-1 text-current"
           href="https://heroui.com"
           title="heroui.com homepage"
         >
-          <span className="text-mutedGray-300">Powered by</span>
-          <p className="text-primary-500">HeroUI</p>
+          
+          <p className="text-primary-500"> @ALIA-HAIDER</p>
         </Link>
+         | Powered by caffeine ☕
       </footer>
     </div>
   );
