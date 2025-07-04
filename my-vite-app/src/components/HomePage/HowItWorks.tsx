@@ -48,7 +48,7 @@ export default function HowItWorks() {
 
       {/* Content section */}
       <div className="w-full md:w-1/2 p-10 flex flex-col justify-center">
-        <h2 className="text-4xl font-bold mb-6 text-softWhite">How CultureConnect Works</h2>
+        <h2 className="text-4xl font-bold mb-6 text-softWhite">How Neighborly Works</h2>
         <p className="text-mutedGray-300 mb-8 max-w-md">
           Finding your perfect neighborhood shouldn't feel like a gamble. Here's how we make it effortless:
         </p>

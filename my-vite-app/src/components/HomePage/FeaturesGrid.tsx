@@ -60,7 +60,7 @@ export default function FeaturesGrid() {
     <div className="p-6 text-softWhite mb-6 bg-deepBlack-500">
       <div className="text-center mb-10">
         <h2 className="text-4xl font-extrabold tracking-tight text-softWhite sm:text-5xl">
-          What Makes CultureConnect Unique
+          What Makes Neighborly Unique
         </h2>
         <p className="mt-3 text-mutedGray-300 text-base sm:text-lg max-w-2xl mx-auto">
           From matching your vibe to discovering hidden gems, we make finding
