@@ -126,18 +126,8 @@ export const Navbar = () => {
             </NavbarMenuItem>
           ))}
           
-          {/* Mobile-only Login/Signup button */}
-          <NavbarMenuItem>
-            <Link
-              className="w-full"
-              color="primary"
-              // href={siteConfig.links.docs}
-              size="lg"
-              onClick={handleMenuClose}
-            >
-              Login/Signup
-            </Link>
-          </NavbarMenuItem>
+        
+
         </div>
       </NavbarMenu>
     </HeroUINavbar>

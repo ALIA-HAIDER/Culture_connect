@@ -37,15 +37,6 @@ function HeaderHp() {
         >
           Explore Now
         </Link>
-        <Link
-          className={buttonStyles({
-            variant: "bordered",
-            radius: "full",
-          })}
-          href="/how-it-works"
-        >
-          How It Works
-        </Link>
       </div>
     </div>
   );
