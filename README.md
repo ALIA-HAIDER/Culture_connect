@@ -1,6 +1,27 @@
-# �️ Neighborly
+# �️ Neighb<div align="center">
+  <h3>🏘️ Discover Your Ideal Neighborhood</h3>
+  <p><em>Building bridges between people and communities through intelligent matching and cultural compatibility.</em></p>
+  <br/>
+  <img src="https://img.shields.io/badge/Status-Active_Development-brightgreen?style=for-the-badge" alt="Status" />
+  <img src="https://img.shields.io/badge/Version-1.0.0-blue?style=for-the-badge" alt="Version" />
+</div>
+
+---
+
+## 🔗 Project Links
 
 <div align="center">
+
+| Resource | Link |
+|----------|------|
+| **📁 GitHub Repository** | [https://github.com/ALIA-HAIDER/Culture_connect.git](https://github.com/ALIA-HAIDER/Culture_connect.git) |
+| **🌐 Live Frontend App** | [https://culture-connect-two.vercel.app/](https://culture-connect-two.vercel.app/) |
+| **🖥️ Deployed Backend** | [https://culture-connect.onrender.com](https://culture-connect.onrender.com) |
+| **📚 API Documentation** | [https://culture-connect.onrender.com/api-docs/](https://culture-connect.onrender.com/api-docs/) |
+
+</div>
+
+---v align="center">
   <img src="https://img.shields.io/badge/React-18.3.1-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React" />
   <img src="https://img.shields.io/badge/TypeScript-5.6.3-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
   <img src="https://img.shields.io/badge/Node.js-Express-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js" />
@@ -16,6 +37,18 @@
   <img src="https://img.shields.io/badge/Status-Active_Development-brightgreen?style=for-the-badge" alt="Status" />
   <img src="https://img.shields.io/badge/Version-1.0.0-blue?style=for-the-badge" alt="Version" />
 </div>
+
+---
+
+## 📋 Project Report
+
+**Neighborly Project Report**  
+*by Alia Haider*
+
+### Project Overview — Neighborly
+**Full-Stack Lifestyle-Based Neighborhood Matcher**
+
+A research-driven web application to help users discover the best locality fit based on safety, affordability, cultural comfort, and lifestyle preferences.
 
 ---
 
