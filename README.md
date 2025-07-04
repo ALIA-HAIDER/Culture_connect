@@ -1,4 +1,4 @@
-# �️ Neighb<div align="center">
+# �️ Neighborly<div align="center">
   <h3>🏘️ Discover Your Ideal Neighborhood</h3>
   <p><em>Building bridges between people and communities through intelligent matching and cultural compatibility.</em></p>
   <br/>
