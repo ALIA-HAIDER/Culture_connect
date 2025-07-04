@@ -31,9 +31,9 @@ const options = {
         For API support, please contact: aliahaider149@gmail.com
       `,
       contact: {
-        name: 'Ali Haider',
+        name: 'Alia Haider',
         email: 'aliahaider149@gmail.com',
-        url: 'https://github.com/aliahaider149/neighborly'
+        url: 'https://github.com/ALIA-HAIDER/Culture_connect.git'
       },
       license: {
         name: 'MIT',
