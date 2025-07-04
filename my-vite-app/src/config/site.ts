@@ -31,10 +31,7 @@ export const siteConfig = {
       label: "Explore Areas",
       href: "/explore",
     },
-    {
-      label: "Logout",
-      href: "/logout",
-    },
+
   ],
   links: {
     github: "https://github.com/ALIA-HAIDER",
