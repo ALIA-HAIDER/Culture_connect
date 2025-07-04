@@ -8,32 +8,32 @@ const options = {
       title: 'Neighborly API',
       version: '1.0.0',
       description: `
-        ## 🏘️ Neighborly API Documentation
+        Neighborly API Documentation
         
-        Welcome to the **Neighborly API** - your gateway to finding the perfect cultural community!
+        Welcome to the Neighborly API - your gateway to finding the perfect cultural community!
         
-        ### 🌟 About Neighborly
+        About Neighborly
         Neighborly is a sophisticated platform that connects people with neighborhoods that truly align with their cultural background, lifestyle choices, and community values. Our API provides comprehensive tools for community discovery, preference matching, and cultural compatibility analysis.
         
-        ### 🚀 Features
-        - **Smart Community Matching**: Advanced algorithms that score communities based on cultural, lifestyle, and location preferences
-        - **Comprehensive Community Data**: Detailed information including safety scores, amenities, cultural tags, and resident demographics
-        - **Flexible Filtering**: Multi-dimensional filtering by languages, culture, religion, lifestyle, and more
-        - **Real-time Data**: Up-to-date community information and statistics
+        Features
+        - Smart Community Matching: Advanced algorithms that score communities based on cultural, lifestyle, and location preferences
+        - Comprehensive Community Data: Detailed information including safety scores, amenities, cultural tags, and resident demographics
+        - Flexible Filtering: Multi-dimensional filtering by languages, culture, religion, lifestyle, and more
+        - Real-time Data: Up-to-date community information and statistics
         
-        ### 🔐 Authentication
+        Authentication
         Currently, the API endpoints are publicly accessible. User authentication and authorization will be implemented in future versions.
         
-        ### 📊 Rate Limiting
+        Rate Limiting
         No rate limiting is currently implemented. Fair usage is expected.
         
-        ### 🆘 Support
-        For API support, please contact: support@neighborly.app
+        Support
+        For API support, please contact: aliahaider149@gmail.com
       `,
       contact: {
-        name: 'Neighborly Support',
-        email: 'support@neighborly.app',
-        url: 'https://neighborly.app/support'
+        name: 'Ali Haider',
+        email: 'aliahaider149@gmail.com',
+        url: 'https://github.com/aliahaider149/neighborly'
       },
       license: {
         name: 'MIT',
